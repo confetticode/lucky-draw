@@ -1,12 +1,17 @@
 <?php
-require __DIR__.'/../vendor/autoload.php';
 
-$faker = Faker\Factory::create();
+require __DIR__.'/../bootstrap.php';
 
-$items = [];
-foreach (range(1, 100) as $i) {
-    $name = str_replace("'", " ", $faker->unique()->name());
-    $items[] =  $name . ' - ' . $i;
+$items = json_decode(
+    file_get_contents(__DIR__ . '/../items.txt')
+);
+
+if (json_last_error() !== JSON_ERROR_NONE || !is_array($items)) {
+    $response = new \Symfony\Component\HttpFoundation\Response('Whoops! Something went wrong', 500);
+
+    $response->send();
+
+    exit(1);
 }
 ?>
 <!doctype html>
