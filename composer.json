@@ -1,0 +1,25 @@
+{
+    "name": "confetticode/lucky-draw",
+    "description": "A simple lucky draw",
+    "type": "project",
+    "require": {
+        "fakerphp/faker": "^1.23",
+        "symfony/http-foundation": "^7.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Confetticode\\LuckyDraw\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Quynh Nguyen",
+            "email": "seriquynh@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require-dev": {
+        "symfony/var-dumper": "^7.1"
+    }
+}
