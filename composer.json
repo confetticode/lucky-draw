@@ -3,6 +3,7 @@
     "description": "A simple lucky draw",
     "type": "project",
     "require": {
+        "php": "^8.0",
         "fakerphp/faker": "^1.23",
         "symfony/http-foundation": "^7.1"
     },
