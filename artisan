@@ -8,7 +8,5 @@ $faker = Faker\Factory::create();
 $items = [];
 foreach (range(1, 100) as $i) {
     $name = str_replace("'", " ", $faker->unique()->name());
-    $items[] =  $name . ' - ' . $i;
+    file_put_contents(__DIR__ . '/items.txt', $name . ' - ' . $i . PHP_EOL, FILE_APPEND);
 }
-
-file_put_contents(__DIR__ . '/items.txt', json_encode($items));

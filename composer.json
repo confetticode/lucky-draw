@@ -22,5 +22,8 @@
     "minimum-stability": "stable",
     "require-dev": {
         "symfony/var-dumper": "^7.1"
+    },
+    "config": {
+        "sort-packages": true
     }
 }
