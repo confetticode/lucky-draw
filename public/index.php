@@ -51,7 +51,7 @@ if (!is_array($items)) {
 <body class="bg-gray-300">
     <div id="app" x-data="{
         settingsVisible: false,
-        intervalId: null,
+        spinIntervalId: null,
         congratulationsInternalId: null,
         itemsStr: 'Something went wrong',
         items: [
@@ -104,7 +104,7 @@ if (!is_array($items)) {
             const container = document.getElementById('name-container');
             let milliseconds = 0;
 
-            this.intervalId = setInterval(() => {
+            this.spinIntervalId = setInterval(() => {
                 marginTop = marginTop - 2;
 
                 if (marginTop <= 85) {
@@ -124,7 +124,7 @@ if (!is_array($items)) {
 
                     this.items = [winner, ...this.items];
 
-                    clearInterval(this.intervalId);
+                    clearInterval(this.spinIntervalId);
 
                     wheel.classList.remove('animate-spin');
 
@@ -160,7 +160,7 @@ if (!is_array($items)) {
         </div>
 
         <div class="mx-auto text-center mt-24">
-            <div id="wheel" class="wheel-container relative inline-block w-96">
+            <div id="wheel" class="wheel-container relative inline-block" style="width: 30%;">
                 <svg viewBox="0 0 100 100" class="wheel bg-gray-800" style="border: 2px solid white; border-radius: 50%; width: 80%; height: 80%; margin: auto; transform: rotate(243.734deg); transition: none;">
 <!--                    <path d="M50,50 L50,0 A50,50 0 0,1 100,50 Z" fill="rgb(27, 47, 73)" stroke="white" stroke-width="0.5"></path>-->
 <!--                    <text x="74.74873734152916" y="25.251262658470836" text-anchor="middle" alignment-baseline="middle" fill="white"-->
@@ -184,17 +184,17 @@ if (!is_array($items)) {
             </div>
         </div>
 
-        <div class="max-w-xl m-auto bg-white rounded pt-12 pb-16 mt-6 overflow-hidden">
+        <div class="m-auto pt-6 pb-12 overflow-hidden">
             <ul id="name-container" class="w-full max-h-2">
                 <template x-for="item in items">
-                    <li class="text-3xl text-center font-bold mb-8">
+                    <li class="text-3xl text-center font-bold text-gray-600 mb-8">
                         <span x-text="item"></span>
                     </li>
                 </template>
             </ul>
         </div>
 
-        <div class="text-center mt-12">
+        <div class="text-center mt-4">
             <button x-on:click="start" class="mx-auto uppercase bg-gray-800 text-white px-4 py-2 rounded font-bold hover:bg-gray-700">Start</button>
         </div>
     </div>
