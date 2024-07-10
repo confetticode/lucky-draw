@@ -12,6 +12,7 @@
             top: 0;
             font-size: 1.6rem;
             animation: confetti-fall linear 5s infinite;
+            z-index: 999;
         }
 
         @keyframes confetti-fall {
@@ -28,8 +29,10 @@
 <div id="app" x-data="{
         settingsVisible: false,
         spinIntervalId: null,
+        spinSeconds: 5,
         spinMilliseconds: 5000,
         congratulationsInternalId: null,
+        congratulationsSeconds: 5,
         congratulationsMilliseconds: 5000,
         itemsStr: 'Something went wrong',
         items: [
@@ -45,6 +48,9 @@
         },
         saveSettings() {
             this.items = this.itemsStr.split('\n');
+
+            this.spinMilliseconds = 1000 * parseInt(this.spinSeconds);
+            this.congratulationsMilliseconds = 1000 * parseInt(this.congratulationsSeconds);
         },
         congratulations() {
             let milliseconds = 100;
@@ -122,19 +128,30 @@
     <div x-show="settingsVisible" class="fixed top-0 right-0 h-screen bg-white w-96">
         <div class="p-4 w-full">
             <label>
-                <textarea x-model="itemsStr" class="w-full border border-gray-400 p-2" rows="25"></textarea>
+                <textarea x-model="itemsStr" class="w-full border-0 ring-1 ring-inset ring-gray-300 p-2" rows="20"></textarea>
             </label>
 
-            <div class="text-center mt-4">
+            <div class="flex mt-4">
+                <div>
+                    <label class="text-sm font-medium leading-6 text-gray-900">Spin seconds</label>
+                    <label>
+                        <input x-model="spinSeconds" type="text" placeholder="5" class="inline-block w-24 p-1 border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </label>
+                </div>
+
+                <div>
+                    <label class="text-sm font-medium leading-6 text-gray-900">Congratulations seconds</label>
+                    <label>
+                        <input x-model="congratulationsSeconds" type="text" placeholder="5" class="inline-block w-24 p-1 border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6">
+                    </label>
+                </div>
+            </div>
+
+            <div class="text-right mt-8">
+                <button x-on:click="toggleSettings" class="ml-1 mx-auto uppercase bg-gray-200 text-white px-4 py-2 rounded font-bold hover:bg-gray-300">Close</button>
                 <button x-on:click="saveSettings" class="mx-auto uppercase bg-gray-800 text-white px-4 py-2 rounded font-bold hover:bg-gray-700">Save</button>
             </div>
         </div>
-
-        <button x-on:click="toggleSettings" class="fixed bottom-4 right-4" title="Close">
-            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M13.5 4.5 21 12m0 0-7.5 7.5M21 12H3" />
-            </svg>
-        </button>
     </div>
 
     <div class="mx-auto text-center mt-24">
