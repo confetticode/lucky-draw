@@ -23,7 +23,12 @@ class Application
         $this->viewsPath = $this->basePath . '/resources/views';
 
         $this->fallbackRequestHandler = function ($app, $request) {
-            return new Response('Not Found', 404);
+            throw new class extends \RuntimeException {
+                public function getStatusCode(): int
+                {
+                    return Response::HTTP_NOT_FOUND;
+                }
+            };
         };
     }
 

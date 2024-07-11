@@ -32,7 +32,7 @@ $app->pushRequestHandler(function (Application $app, Request $request) {
         throw new \RuntimeException('$items must be a string array.');
     }
 
-    return $app->render('index', ['items' => $items, 'csrfToken' => $_SESSION['csrf_token']]);
+    return $app->render('lucky-draw', ['items' => $items, 'csrfToken' => $_SESSION['csrf_token']]);
 });
 
 $app->pushRequestHandler(function (Application $app, Request $request) {

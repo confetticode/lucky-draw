@@ -27,6 +27,10 @@
 </head>
 <body class="bg-gray-300">
 <input type="hidden" id="csrf-token" value="<?php echo $csrfToken; ?>"/>
+<audio id="congratulations-audio">
+    <source src="/audio/congratulations.mp3" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
 <div id="app" x-data="{
         settingsVisible: false,
         spinIntervalId: null,
@@ -68,6 +72,10 @@
               });
         },
         congratulations() {
+            let audio = document.getElementById('congratulations-audio');
+
+            audio.play();
+
             let milliseconds = 100;
 
             const showConfetti = () => {
