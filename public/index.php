@@ -1,9 +1,7 @@
 <?php
 
-/** @var Application $app */
+$app = require __DIR__ . '/../app.php';
 
-use ConfettiCode\LuckyDraw\Application;
-
-$app = require __DIR__.'/../app.php';
-
-$app->handleRequest();
+$app->handleRequest(
+    \Symfony\Component\HttpFoundation\Request::createFromGlobals()
+);

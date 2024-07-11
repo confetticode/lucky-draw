@@ -26,6 +26,7 @@
     </style>
 </head>
 <body class="bg-gray-300">
+<input type="hidden" id="csrf-token" value="<?php echo $csrfToken; ?>"/>
 <div id="app" x-data="{
         settingsVisible: false,
         spinIntervalId: null,
@@ -48,9 +49,23 @@
         },
         saveSettings() {
             this.items = this.itemsStr.split('\n');
-
             this.spinMilliseconds = 1000 * parseInt(this.spinSeconds);
             this.congratulationsMilliseconds = 1000 * parseInt(this.congratulationsSeconds);
+
+            const token = document.getElementById('csrf-token').value;
+
+            axios.post('/', {
+                _token: token,
+                items: this.items,
+                spin_seconds: this.spinSeconds,
+                congratulations_seconds: this.congratulationsSeconds,
+            })
+              .then(function (response) {
+                  // alert success.
+              })
+              .catch(function (error) {
+                    //
+              });
         },
         congratulations() {
             let milliseconds = 100;
@@ -194,6 +209,7 @@
     </div>
 </div>
 
+<script src="https://unpkg.com/axios@1.6.7/dist/axios.min.js"></script>
 <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
 </body>
 </html>

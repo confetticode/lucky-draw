@@ -1,17 +1,13 @@
 <?php
 
-use ConfettiCode\LuckyDraw\Application;
+use App\Core\Application;
 
-require __DIR__ . '/vendor/autoload.php';
+require __DIR__.'/vendor/autoload.php';
 
-$config = file_exists($configFile = __DIR__ . '/config.env.php') ? require $configFile : [
-    'debug' => false,
-];
+$app = new Application(
+    realpath(__DIR__)
+);
 
-$ignition = \Confetti\Ignition\Ignition::setUp();
-
-$ignition->setDebug($config['debug']);
-
-$app = new Application(realpath(__DIR__));
+$app->loadRoutes('lucky-draw');
 
 return $app;

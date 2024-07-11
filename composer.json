@@ -1,17 +1,17 @@
 {
-    "name": "confetticode/lucky-draw",
-    "description": "A simple lucky draw",
+    "name": "confetti/mini-apps",
+    "description": "A collection of mini apps",
     "type": "project",
     "require": {
         "php": "^8.0",
-        "confetti/ignition": "1.x",
+        "confetti/error-handler": "1.x-dev",
         "fakerphp/faker": "^1.23",
         "symfony/http-foundation": "^7.1"
     },
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "ConfettiCode\\LuckyDraw\\": "src/"
+            "App\\": "app/"
         }
     },
     "authors": [
